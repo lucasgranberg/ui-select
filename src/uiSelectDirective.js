@@ -6,7 +6,7 @@ uis.directive('uiSelect',
     restrict: 'EA',
     templateUrl: function(tElement, tAttrs) {
       var theme = tAttrs.theme || uiSelectConfig.theme;
-      return theme + (angular.isDefined(tAttrs.multiple) ? '/select-multiple.tpl.html' : '/select.tpl.html');
+      return theme + ((angular.isDefined(tAttrs.multiple)&&tAttrs.multiple) ? '/select-multiple.tpl.html' : '/select.tpl.html');
     },
     replace: true,
     transclude: true,
@@ -18,7 +18,7 @@ uis.directive('uiSelect',
     compile: function(tElement, tAttrs) {
 
       //Multiple or Single depending if multiple attribute presence
-      if (angular.isDefined(tAttrs.multiple))
+      if ((angular.isDefined(tAttrs.multiple)&&tAttrs.multiple))
         tElement.append("<ui-select-multiple/>").removeAttr('multiple');
       else
         tElement.append("<ui-select-single/>");       
